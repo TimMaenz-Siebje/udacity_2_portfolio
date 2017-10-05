@@ -1,0 +1,229 @@
+* {
+    /*border: 1px solid blue !important;*/ /*uncomment to visualize all boxes*/
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  color: #2d3c49;
+  font-size: 16px;
+  font-weight: 300;
+  line-height: 1.2;
+  margin: 10px; /*override value of 8px from user agent stylesheet*/
+}
+
+.container-with-border {
+    margin: 0 auto 10px auto; /*center on page, 10px margin at bottom*/
+    padding: 10px;
+    max-width: 800px;
+    min-width: 250px; /*accept horizontal scrolling on tiny screens*/
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between; /*horizontal alignment of boxes within container*/
+    align-items: stretch; /*vertical alignment of boxes on CURRENT line*/
+    border: 1px solid #7d97ad;
+    border-radius: 3px;
+    box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.5);
+}
+
+.container-without-border {
+    margin: 0 auto 10px auto;
+    max-width: 800px;
+    min-width: 250px;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: stretch;
+}
+
+.header-logo {
+    margin: 0 auto 0 0;
+    height: calc((2.5rem + 1.5rem)*1.2); /*height and width should be similar to headlines on the right side*/
+    width: calc((2.5rem + 1.5rem)*1.2);
+    background-image: url(../images/rocket.svg);
+    background-size: contain; /*scale image*/
+}
+
+.header-textbox {
+    text-align: right;
+}
+
+.header-myname {
+  margin: 0;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.text-abbreviated {
+  display: none; /*shortname will be displayed (instead of fullname if screen becomes too narrow, see media query below*/
+}
+
+.header-mytitle {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 300;
+}
+
+.main-image {
+    max-width: 100%;
+    object-fit: contain;
+    vertical-align: bottom; /*remove tiny space at bottom of picture element*/
+    border-radius: 3px;
+}
+
+.project-headline {
+  margin: 0;
+  width: 100%;
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+.project-box { /*one box for each project*/
+  margin: 0 0 10px 0;
+  padding: 10px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /*horizontal alignment of boxes within container*/
+  align-items: stretch; /*vertical alignment of boxes on CURRENT line*/
+  border: 1px solid #7d97ad;
+  border-radius: 3px;
+  box-shadow: 1px 2px 3px 0px rgba(0,0,0,0.5);
+}
+
+.project-image {
+    width: 15%; /*svg can take up 15% of available width (in one column layout)*/
+    display: flex;
+    justify-content: center; /*make sure svg is centered horizonally...*/
+    align-items: center; /*...and vertically*/
+}
+
+.project-svg {
+  max-height: 90px; /*cap on vertical size, otherwise becomes too large in two column layout*/
+  height: 100%; /*fully use available size vertically...*/
+  width: 100%; /*...and horizontally*/
+}
+
+/*use css to assign different colors to project svgs*/
+
+.project-image[data-item="Animal"] {
+  fill: #4185f4;
+}
+
+.project-image[data-item="Portfolio"] {
+  fill: #eb4336;
+}
+
+.project-image[data-item="Resume"] {
+  fill: #cccccc;
+}
+
+.project-image[data-item="Game"] {
+  fill: #cccccc;
+}
+
+.project-image[data-item="Optimization"] {
+  fill: #cccccc;
+}
+
+.project-details {
+  width: calc(85% - 10px); /*box can take up remaining width (project svg takes 15%, 10px gap)*/
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between; /*horizontal alignment of boxes within container*/
+  align-items: center; /*vertical alignment of boxes on CURRENT line*/
+  align-content: space-between; /*vertical alignment of boxes within container*/
+}
+
+.project-description {
+  width: 100%;
+  margin: 0 0 5px 0;
+  font-size: 2.0rem;
+  font-weight: 600;
+}
+
+.project-description[data-item="Animal"] {
+  color: #4185f4;
+}
+
+.project-description[data-item="Portfolio"] {
+  color: #eb4336;
+}
+
+.project-description[data-item="Resume"] {
+  color: #cccccc;
+}
+
+.project-description[data-item="Game"] {
+  color: #cccccc;
+}
+
+.project-description[data-item="Optimization"] {
+  color: #cccccc;
+}
+
+.project-button {
+  width: calc(50% - 10px/2); /*display two buttons on one line with a 10px gap, modify to 1 button if width too narrow!*/
+  min-height: 48px; /*ensure clickability...*/
+  min-width: 48px; /*...on mobile devices!*/
+  padding: 5px;
+  font-weight: 300;
+  border: 1px solid #929292;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #e7e7e7, #ddd);
+  box-shadow: 0 0.1rem 0 rgba(255,255,255,.4) inset;
+  display: flex;
+  justify-content: center; /*horizontal alignment of boxes within container*/
+  align-items: center; /*vertical alignment of boxes on CURRENT line*/
+}
+
+.footer-textbox{
+  width: 100%;
+  text-align: left;
+  font-style: italic;
+  padding: 5px 0 0 0;
+  border-top: 1px solid #929292;
+}
+
+/*Major breakpoint: change from 1 column layout for project boxes to two column layout*/
+
+@media screen and (min-width: 750px) {
+  .project-box {
+    width: calc(50% - 10px/2);
+  }
+  .project-image {
+    width: 100%;
+  }
+  .project-details {
+    width: 100%;
+  }
+}
+
+/*Minor breakpoints: reduce font size and switch to shorter descriptions*/
+
+@media screen and (max-width: 480px) {
+  html {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  html {
+    font-size: 9px;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .text-abbreviated {
+    display: inline;
+  }
+  .text-complete {
+    display: none;
+  }
+}
